@@ -1,0 +1,52 @@
+<nz-layout class="fixed-layout">
+  <nz-header class="header">
+    <app-header></app-header>
+  </nz-header>
+  <nz-layout>
+    <nz-sider
+      nzWidth="250px"
+      [nzCollapsedWidth]="80"
+      [(nzCollapsed)]="isCollapsed"
+      nzCollapsible
+    >
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item routerLink="/home">
+          <i nz-icon nzType="home"></i>
+          <span>Home</span>
+        </li>
+
+        <li
+          *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/clientes/home"
+        >
+          <i nz-icon nzType="team"></i>
+          <span>Meus Dados</span>
+        </li>
+        <li
+          *ngIf="roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/funcionarios/cadastrar"
+        >
+          <i nz-icon nzType="user-add"></i>
+          <span>Cadastrar Funcionário</span>
+        </li>
+        <li
+        *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
+        nz-menu-item
+        (click)="logout()"
+        (keydown)="onKeyDown($event)"
+      >
+        <i nz-icon nzType="logout"></i>
+        <span>Sair</span>
+      </li>
+    </ul>
+  </nz-sider>
+
+    <nz-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

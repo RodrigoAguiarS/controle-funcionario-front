@@ -1,0 +1,4 @@
+export const ACESSO = {
+  ADMINISTRADOR: 'ADMINISTRADOR',
+  USUARIO: 'USUARIO'
+};
