@@ -1,5 +1,6 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/model/Usuario';
+import { Pessoa } from 'src/app/model/Pessoa';
 import { Component, OnInit } from '@angular/core';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { UsuarioService } from 'src/app/services/usuario.service';

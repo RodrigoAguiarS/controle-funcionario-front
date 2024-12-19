@@ -46,6 +46,13 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { HeaderComponent } from './components/header/header.component';
+import { PerfilCreateComponent } from './components/perfil/perfil-create/perfil-create.component';
+import { CargoCreateComponent } from './components/cargo/cargo-create/cargo-create.component';
+import { FuncionarioCreateComponent } from './components/funcionario/funcionario-create/funcionario-create.component';
+import { PerfilListComponent } from './components/perfil/perfil-list/perfil-list.component';
+import { PerfilUpdateComponent } from './components/perfil/perfil-update/perfil-update.component';
+import { PerfilDeleteComponent } from './components/perfil/perfil-delete/perfil-delete.component';
+
 
 registerLocaleData(pt);
 
@@ -55,7 +62,13 @@ registerLocaleData(pt);
     LoginComponent,
     HomeComponent,
     NavComponent,
-    HeaderComponent
+    HeaderComponent,
+    PerfilCreateComponent,
+    CargoCreateComponent,
+    FuncionarioCreateComponent,
+    PerfilListComponent,
+    PerfilUpdateComponent,
+    PerfilDeleteComponent,
   ],
   imports: [
     BrowserModule,

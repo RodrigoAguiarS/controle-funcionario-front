@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToUserChanges();
-    this.loadUserRoles();
+    this.carregarPapelUsuario();
     this.carregarUsuario();
   }
 
@@ -62,7 +62,7 @@ export class NavComponent implements OnInit {
       });
   }
 
-  private loadUserRoles(): void {
+  private carregarPapelUsuario(): void {
     this.authService.getUserRoles().subscribe({
       next: (roles: string[]) => {
         this.roles = roles;

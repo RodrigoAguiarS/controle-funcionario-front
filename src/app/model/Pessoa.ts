@@ -6,6 +6,6 @@ export class Pessoa {
   cpf!: string;
   telefone!: string;
   dataNascimento!: Date;
-  endereco!: Endereco;
+  endereco: Endereco = new Endereco();
 
 }

@@ -6,10 +6,10 @@ import { Pessoa } from './Pessoa';
 
 export class Usuario {
   id!: number;
-  pessoa!: Pessoa;
+  pessoa: Pessoa = new Pessoa();
   email!: string;
   senha!: string;
   perfis!: Perfil[];
   ativo!: boolean;
-  cargo!: Cargo;
+  cargo: Cargo = new Cargo();
 }

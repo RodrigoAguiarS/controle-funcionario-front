@@ -26,22 +26,38 @@
         <li
           *ngIf="roles.includes('ADMINISTRADOR')"
           nz-menu-item
-          routerLink="/funcionarios/cadastrar"
+          routerLink="/funcionarios"
         >
           <i nz-icon nzType="user-add"></i>
-          <span>Cadastrar Funcionário</span>
+          <span>Funcionários</span>
         </li>
         <li
-        *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
-        nz-menu-item
-        (click)="logout()"
-        (keydown)="onKeyDown($event)"
-      >
-        <i nz-icon nzType="logout"></i>
-        <span>Sair</span>
-      </li>
-    </ul>
-  </nz-sider>
+          *ngIf="roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/perfis"
+        >
+          <i nz-icon nzType="user"></i>
+          <span>Perfil</span>
+        </li>
+        <li
+          *ngIf="roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/cargos"
+        >
+          <i nz-icon nzType="solution"></i>
+          <span>Cargo</span>
+        </li>
+        <li
+          *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          (click)="logout()"
+          (keydown)="onKeyDown($event)"
+        >
+          <i nz-icon nzType="logout"></i>
+          <span>Sair</span>
+        </li>
+      </ul>
+    </nz-sider>
 
     <nz-content>
       <div class="content">
