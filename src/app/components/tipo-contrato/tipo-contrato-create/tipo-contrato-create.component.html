@@ -1,12 +1,12 @@
 <div class="container">
   <form
     nz-form
-    [formGroup]="cargoForm"
+    [formGroup]="tipoContratoForm"
     (submit)="create()"
     fxLayout="column"
     fxLayoutGap="16px"
   >
-    <h3>Dados do Cargo</h3>
+    <h3>Dados do TipoContrato</h3>
     <div fxLayout="column" fxLayoutGap="16px">
       <!-- Nome -->
       <nz-form-item fxFlex>
@@ -16,7 +16,7 @@
             nz-input
             formControlName="nome"
             id="nome"
-            placeholder="Ex. Nome do Cargo..."
+            placeholder="Ex. Nome do TipoContrato..."
             required
           />
         </nz-form-control>
@@ -34,7 +34,7 @@
               maxlength="255"
               #descricaoTextarea
               id="descricao"
-              placeholder="Ex. Descrição do Cargo..."
+              placeholder="Ex. Descrição do TipoContrato..."
               style="padding-bottom: 20px"
             ></textarea>
             <span
@@ -49,27 +49,26 @@
         </nz-form-control>
       </nz-form-item>
 
-      <!-- Salário -->
+      <!-- Horas por Dia -->
       <nz-form-item fxFlex>
-        <nz-form-label [nzSpan]="24" nzFor="salario">Salário:</nz-form-label>
+        <nz-form-label [nzSpan]="24" nzFor="salario"
+          >Horas Por Dia:</nz-form-label
+        >
         <nz-form-control [nzSpan]="24">
           <input
             nz-input
-            type="text"
-            prefix="R$ "
-            currencyMask
-            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-            formControlName="salario"
-            id="salario"
-            placeholder="Ex. R$ 100.00"
+            type="number"
+            formControlName="horasDia"
+            id="horasDia"
+            placeholder="Ex. 6"
             required
           />
         </nz-form-control>
       </nz-form-item>
     </div>
 
-    <button nz-button nzType="primary" [disabled]="!cargoForm.valid">
-      Criar Cargo
+    <button nz-button nzType="primary" [disabled]="!tipoContratoForm.valid">
+      Criar TipoContrato
     </button>
   </form>
   <button nz-button nzType="default" routerLink="../">Cancelar</button>

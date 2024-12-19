@@ -48,11 +48,14 @@
           <span>Cargo</span>
         </li>
         <li
-          *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
-          nz-menu-item
-          (click)="logout()"
-          (keydown)="onKeyDown($event)"
-        >
+        *ngIf="roles.includes('ADMINISTRADOR')"
+        nz-menu-item
+        routerLink="/tipo-contratos"
+      >
+        <i nz-icon nzType="tool"></i>
+        <span>Tipo Contrato</span>
+      </li>
+        <li nz-menu-item (click)="logout()" (keydown)="onKeyDown($event)">
           <i nz-icon nzType="logout"></i>
           <span>Sair</span>
         </li>

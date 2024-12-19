@@ -1,34 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CargoService } from 'src/app/services/cargo.service';
 import { MensagensService } from 'src/app/services/mensagens.service';
 
 @Component({
-  selector: 'app-cargo-create',
-  templateUrl: './cargo-create.component.html',
-  styleUrls: ['./cargo-create.component.css'],
+  selector: 'app-cargo-delete',
+  templateUrl: './cargo-delete.component.html',
+  styleUrls: ['./cargo-delete.component.css'],
 })
-export class CargoCreateComponent implements OnInit {
+export class CargoDeleteComponent implements OnInit {
   cargoForm!: FormGroup;
+  id!: number;
 
   constructor(
     private readonly mensagensService: MensagensService,
     private readonly cargoService: CargoService,
     private readonly formBuilder: FormBuilder,
+    private readonly route: ActivatedRoute,
     private readonly router: Router
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.iniciarForm();
   }
 
-  create(): void {
-    this.cargoService.create(this.cargoForm.value).subscribe({
-      next: (resposta) => {
-        this.mensagensService.sucesso(
-          'Cargo ' + resposta.nome + ' cadastrado com sucesso'
-        );
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.iniciarForm();
+    this.carregarCargos();
+  }
+
+  carregarCargos(): void {
+    this.cargoService.findById(this.id).subscribe({
+      next: (cargo) => {
+        this.cargoForm.patchValue(cargo);
+        this.cargoForm.disable();
+      },
+      error: (ex) => {
+        this.mensagensService.erro(ex.error.message);
+      },
+    });
+  }
+
+  delete(): void {
+    this.cargoForm.value.id = this.id;
+    this.cargoService.delete(this.cargoForm.value.id).subscribe({
+      next: () => {
+        this.mensagensService.sucesso('Cargo apagado com sucesso.');
         this.router.navigate(['cargos']);
       },
       error: (ex) => {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../model/Usuario';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
+import { UsuarioResposta } from '../model/UsuarioResposta';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class UsuarioService {
   }
 
   create(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${API_CONFIG.baseUrl}/api/usuario/signup`, usuario);
+    return this.http.post<Usuario>(`${API_CONFIG.baseUrl}/usuarios`, usuario);
   }
 
-  findAll(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${API_CONFIG.baseUrl}/api/usuario`);
+  findAll(): Observable<UsuarioResposta[]> {
+    return this.http.get<UsuarioResposta[]>(`${API_CONFIG.baseUrl}/usuarios`);
   }
 
   findAllClientes(): Observable<Usuario[]> {

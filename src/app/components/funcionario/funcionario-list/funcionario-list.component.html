@@ -1,0 +1,55 @@
+<div class="container">
+  <button nz-button nzType="primary" (click)="entrarCadastro()">
+    Novo Usuário
+  </button>
+
+  <nz-table
+    #basicTable
+    [nzData]="usuarios"
+    [nzPageSize]="10"
+    [nzLoading]="loading"
+    nzShowPagination="true"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Perfil</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.nome }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.cargo }}</td>
+        <td>
+          <ng-container *ngFor="let perfil of usuario.perfil; let i = index">
+            {{ perfil }}<span *ngIf="i < usuario.perfil.length - 1">, </span>
+          </ng-container>
+        </td>
+        <td>
+          <a [routerLink]="['/usuarios/update', usuario.id]">
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              title="Atualizar usuário"
+            ></i>
+          </a>
+          <a [routerLink]="['/usuarios/delete', usuario.id]">
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              title="Deletar usuário"
+            ></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

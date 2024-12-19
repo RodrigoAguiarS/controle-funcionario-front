@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PerfilService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   findAll(): Observable<Perfil[]> {
     return this.http.get<Perfil[]>(`${API_CONFIG.baseUrl}/perfis`);

@@ -7,6 +7,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CepPipe, CnpjPipe, CPFPipe, TelefonePipe, } from '../pipe';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
@@ -42,6 +45,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NgxMaskModule } from 'ngx-mask';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
@@ -52,12 +56,22 @@ import { FuncionarioCreateComponent } from './components/funcionario/funcionario
 import { PerfilListComponent } from './components/perfil/perfil-list/perfil-list.component';
 import { PerfilUpdateComponent } from './components/perfil/perfil-update/perfil-update.component';
 import { PerfilDeleteComponent } from './components/perfil/perfil-delete/perfil-delete.component';
+import { CargoListComponent } from './components/cargo/cargo-list/cargo-list.component';
+import { CargoUpdateComponent } from './components/cargo/cargo-update/cargo-update.component';
+import { CargoDeleteComponent } from './components/cargo/cargo-delete/cargo-delete.component';
+import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+import { TipoContratoCreateComponent } from './components/tipo-contrato/tipo-contrato-create/tipo-contrato-create.component';
+import { TipoContratoListComponent } from './components/tipo-contrato/tipo-contrato-list/tipo-contrato-list.component';
 
 
 registerLocaleData(pt);
 
 @NgModule({
   declarations: [
+    TelefonePipe,
+    CPFPipe,
+    CepPipe,
+    CnpjPipe,
     AppComponent,
     LoginComponent,
     HomeComponent,
@@ -69,10 +83,17 @@ registerLocaleData(pt);
     PerfilListComponent,
     PerfilUpdateComponent,
     PerfilDeleteComponent,
+    CargoListComponent,
+    CargoUpdateComponent,
+    CargoDeleteComponent,
+    FuncionarioListComponent,
+    TipoContratoCreateComponent,
+    TipoContratoListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CurrencyMaskModule,
     NzMessageModule,
     NzInputModule,
     NzButtonModule,
@@ -107,7 +128,8 @@ registerLocaleData(pt);
     NzDescriptionsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

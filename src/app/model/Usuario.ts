@@ -2,6 +2,7 @@
 import { Cargo } from './Cargo';
 import { Perfil } from './Perfil';
 import { Pessoa } from './Pessoa';
+import { TipoContrato } from './TipoContrato';
 
 
 export class Usuario {
@@ -12,4 +13,5 @@ export class Usuario {
   perfis!: Perfil[];
   ativo!: boolean;
   cargo: Cargo = new Cargo();
+  tipoContrato: TipoContrato = new TipoContrato();
 }

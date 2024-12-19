@@ -1,0 +1,52 @@
+<div class="container">
+  <button nz-button nzType="primary" (click)="entrarCadastro()">
+    Novo Cargo
+  </button>
+
+  <nz-table
+    #basicTable
+    [nzData]="cargos"
+    [nzPageIndex]="1"
+    [nzPageSize]="10"
+    [nzLoading]="loading"
+    nzShowPagination="true"
+  >
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Destrição</th>
+      <th scope="col">Salário</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr *ngFor="let cargo of cargos">
+        <td>{{ cargo.id }}</td>
+        <td>{{ cargo.nome }}</td>
+        <td>{{ cargo.descricao}}</td>
+        <td>{{ cargo.salario | currency:'BRL':'symbol':'1.2-2' }}</td>
+
+        <td>
+          <a [routerLink]="['/cargos/update', cargo.id]">
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              title="Atualizar cargo"
+            ></i>
+          </a>
+          <a [routerLink]="['/cargos/delete', cargo.id]">
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              title="Deletar cargo"
+            ></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+

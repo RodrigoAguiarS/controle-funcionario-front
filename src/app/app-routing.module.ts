@@ -8,7 +8,16 @@ import { PerfilUpdateComponent } from './components/perfil/perfil-update/perfil-
 import { PerfilDeleteComponent } from './components/perfil/perfil-delete/perfil-delete.component';
 
 import { CargoCreateComponent } from './components/cargo/cargo-create/cargo-create.component';
+import { CargoListComponent } from './components/cargo/cargo-list/cargo-list.component';
+import { CargoUpdateComponent } from './components/cargo/cargo-update/cargo-update.component';
+import { CargoDeleteComponent } from './components/cargo/cargo-delete/cargo-delete.component';
+
 import { FuncionarioCreateComponent } from './components/funcionario/funcionario-create/funcionario-create.component';
+import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+
+import { TipoContratoCreateComponent } from './components/tipo-contrato/tipo-contrato-create/tipo-contrato-create.component';
+import { TipoContratoListComponent } from './components/tipo-contrato/tipo-contrato-list/tipo-contrato-list.component';
+
 
 import { NoAuthGuard } from './auth/noauth.guard';
 import { RoleGuard } from './auth/role.guard';
@@ -32,9 +41,12 @@ const routes: Routes = [
       },
       {
         path: 'funcionarios',
-        component: FuncionarioCreateComponent,
         canActivate: [RoleGuard],
         data: { roles: [ACESSO.ADMINISTRADOR] },
+        children: [
+          { path: '', component: FuncionarioListComponent },
+          { path: 'create', component: FuncionarioCreateComponent },
+        ],
       },
       {
         path: 'perfis',
@@ -49,10 +61,24 @@ const routes: Routes = [
       },
       {
         path: 'cargos',
-        component: CargoCreateComponent,
         canActivate: [RoleGuard],
         data: { roles: [ACESSO.ADMINISTRADOR] },
-      }
+        children: [
+          { path: '', component: CargoListComponent },
+          { path: 'create', component: CargoCreateComponent },
+          { path: 'update/:id', component: CargoUpdateComponent },
+          { path: 'delete/:id', component: CargoDeleteComponent },
+        ],
+      },
+      {
+        path: 'tipo-contratos',
+        canActivate: [RoleGuard],
+        data: { roles: [ACESSO.ADMINISTRADOR] },
+        children: [
+          { path: '', component: TipoContratoListComponent },
+          { path: 'create', component: TipoContratoCreateComponent },
+        ],
+      },
     ]
   }
 ];
