@@ -14,9 +14,13 @@ import { CargoDeleteComponent } from './components/cargo/cargo-delete/cargo-dele
 
 import { FuncionarioCreateComponent } from './components/funcionario/funcionario-create/funcionario-create.component';
 import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+import { FuncionarioUpdateComponent } from './components/funcionario/funcionario-update/funcionario-update.component';
+import { FuncionarioDeleteComponent } from './components/funcionario/funcionario-delete/funcionario-delete.component';
 
 import { TipoContratoCreateComponent } from './components/tipo-contrato/tipo-contrato-create/tipo-contrato-create.component';
 import { TipoContratoListComponent } from './components/tipo-contrato/tipo-contrato-list/tipo-contrato-list.component';
+import { TipoContratoUpdateComponent } from './components/tipo-contrato/tipo-contrato-update/tipo-contrato-update.component';
+import { TipoContratoDeleteComponent } from './components/tipo-contrato/tipo-contrato-delete/tipo-contrato-delete.component';
 
 
 import { NoAuthGuard } from './auth/noauth.guard';
@@ -46,6 +50,8 @@ const routes: Routes = [
         children: [
           { path: '', component: FuncionarioListComponent },
           { path: 'create', component: FuncionarioCreateComponent },
+          { path: 'update/:id', component: FuncionarioUpdateComponent },
+          { path: 'delete/:id', component: FuncionarioDeleteComponent },
         ],
       },
       {
@@ -77,6 +83,8 @@ const routes: Routes = [
         children: [
           { path: '', component: TipoContratoListComponent },
           { path: 'create', component: TipoContratoCreateComponent },
+          { path: 'update/:id', component: TipoContratoUpdateComponent },
+          { path: 'delete/:id', component: TipoContratoDeleteComponent },
         ],
       },
     ]

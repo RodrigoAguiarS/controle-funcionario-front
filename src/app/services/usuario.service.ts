@@ -24,23 +24,23 @@ export class UsuarioService {
     return this.http.get<UsuarioResposta[]>(`${API_CONFIG.baseUrl}/usuarios`);
   }
 
-  findAllClientes(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${API_CONFIG.baseUrl}/api/usuario/clientes`);
+  findById(id: any): Observable<Usuario> {
+    return this.http.get<Usuario>(`${API_CONFIG.baseUrl}/usuarios/${id}`);
   }
 
-  findById(id: any): Observable<Usuario> {
-    return this.http.get<Usuario>(`${API_CONFIG.baseUrl}/api/usuario/${id}`);
+  findByUsuarioPorId(id: any): Observable<Usuario> {
+    return this.http.get<Usuario>(`${API_CONFIG.baseUrl}/usuarios/obterPorId/${id}`);
   }
 
   update(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${API_CONFIG.baseUrl}/api/usuario/${usuario.id}`, usuario);
+    return this.http.put<Usuario>(`${API_CONFIG.baseUrl}/usuarios/${usuario.id}`, usuario);
   }
 
   delete(id: any): Observable<Usuario> {
-    return this.http.delete<Usuario>(`${API_CONFIG.baseUrl}/api/usuario/${id}`);
+    return this.http.delete<Usuario>(`${API_CONFIG.baseUrl}/usuarios/${id}`);
   }
 
   alterarSenha(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${API_CONFIG.baseUrl}/api/usuario/alterar-senha/${usuario.id}`, usuario);
+    return this.http.put<Usuario>(`${API_CONFIG.baseUrl}/usuarios/alterar-senha/${usuario.id}`, usuario);
   }
 }

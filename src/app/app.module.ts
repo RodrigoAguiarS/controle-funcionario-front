@@ -62,6 +62,10 @@ import { CargoDeleteComponent } from './components/cargo/cargo-delete/cargo-dele
 import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
 import { TipoContratoCreateComponent } from './components/tipo-contrato/tipo-contrato-create/tipo-contrato-create.component';
 import { TipoContratoListComponent } from './components/tipo-contrato/tipo-contrato-list/tipo-contrato-list.component';
+import { TipoContratoUpdateComponent } from './components/tipo-contrato/tipo-contrato-update/tipo-contrato-update.component';
+import { TipoContratoDeleteComponent } from './components/tipo-contrato/tipo-contrato-delete/tipo-contrato-delete.component';
+import { FuncionarioUpdateComponent } from './components/funcionario/funcionario-update/funcionario-update.component';
+import { FuncionarioDeleteComponent } from './components/funcionario/funcionario-delete/funcionario-delete.component';
 
 
 registerLocaleData(pt);
@@ -89,6 +93,10 @@ registerLocaleData(pt);
     FuncionarioListComponent,
     TipoContratoCreateComponent,
     TipoContratoListComponent,
+    TipoContratoUpdateComponent,
+    TipoContratoDeleteComponent,
+    FuncionarioUpdateComponent,
+    FuncionarioDeleteComponent,
   ],
   imports: [
     BrowserModule,

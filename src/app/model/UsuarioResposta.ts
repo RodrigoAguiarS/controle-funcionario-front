@@ -4,4 +4,5 @@ export class UsuarioResposta {
   nome!: string;
   cargo!: string;
   perfil!: string[];
+  tipoContrato!: string;
 }

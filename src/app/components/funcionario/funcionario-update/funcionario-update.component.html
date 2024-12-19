@@ -1,0 +1,276 @@
+<div class="container" nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6">
+  <form
+    nz-form
+    [formGroup]="usuarioForm"
+    (submit)="update()"
+    class="usuario-form"
+  >
+    <div class="form-row">
+      <!-- Nome do Usuário -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Nome do Usuário</nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input
+            nz-input
+            formControlName="nome"
+            placeholder="Ex. João Silva"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- CPF -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">CPF</nz-form-label>
+        <nz-form-control>
+          <input
+            mask="000.000.000-00"
+            nz-input
+            formControlName="cpf"
+            placeholder="Digite seu CPF"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="form-row">
+      <!-- E-mail -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">E-mail</nz-form-label>
+        <nz-form-control>
+          <input
+            type="email"
+            nz-input
+            formControlName="email"
+            placeholder="Ex. email@exemplo.com"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Telefone -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Telefone</nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            formControlName="telefone"
+            placeholder="Ex. (99) 99999-9999"
+            required
+            mask="(00) 0 0000-0000"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Data de Nascimento -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Data de Nascimento</nz-form-label>
+        <nz-form-control>
+          <nz-date-picker
+            class="date-picker"
+            formControlName="dataNascimento"
+            nzPlaceHolder="Selecione sua data de nascimento"
+            [nzInputReadOnly]="true"
+            nzFormat="dd/MM/yyyy"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="form-row">
+      <!-- Perfil -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Perfil</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            formControlName="perfil"
+            nzPlaceHolder="Selecione um perfil"
+          >
+            <nz-option
+              *ngFor="let perfil of perfis"
+              [nzValue]="perfil.id"
+              [nzLabel]="perfil.nome"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Cargo -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Cargo</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="cargo" nzPlaceHolder="Selecione um cargo">
+            <nz-option
+              *ngFor="let cargo of cargos"
+              [nzValue]="cargo.id"
+              [nzLabel]="cargo.nome"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+      <!-- Tipo Contrato -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Tipo Contrato</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="tipoContrato" nzPlaceHolder="Selecione um tipo de contrato">
+            <nz-option
+              *ngFor="let tipo of tiposContrato"
+              [nzValue]="tipo.id"
+              [nzLabel]="tipo.nome"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+
+    <div class="form-row">
+      <!-- Senha -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Senha</nz-form-label>
+        <nz-form-control>
+          <nz-input-group [nzSuffix]="suffixIcon">
+            <input
+              nz-input
+              autocomplete="off"
+              [type]="hide ? 'password' : 'text'"
+              formControlName="senha"
+              placeholder="Digite sua senha"
+              required
+            />
+          </nz-input-group>
+          <ng-template #suffixIcon>
+            <i
+              nz-icon
+              (keydown)="handleKeyDown($event)"
+              [nzType]="hide ? 'eye-invisible' : 'eye'"
+              (click)="hide = !hide"
+            ></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Confirmar Senha -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Confirmar Senha</nz-form-label>
+        <nz-form-control>
+          <input
+            (blur)="checkPasswordMatch()"
+            autocomplete="off"
+            nz-input
+            type="password"
+            formControlName="confirmarSenha"
+            placeholder="Confirme sua senha"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <h3 class="centro">Endereço do Usuário</h3>
+    <div class="form-row">
+      <!-- CEP -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">CEP</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de CEP é obrigatório"
+        >
+          <input
+            mask="00000-000"
+            nz-input
+            formControlName="cep"
+            placeholder="Ex. 00000-000"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Número -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Número</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de Número é obrigatório"
+        >
+          <input
+            type="number"
+            nz-input
+            formControlName="numero"
+            placeholder="Ex. 000"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Rua -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Rua</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de Rua é obrigatório"
+        >
+          <input
+            nz-input
+            formControlName="rua"
+            placeholder="Ex. Nome da Rua"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="form-row">
+      <!-- Bairro -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Bairro</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de Bairro é obrigatório"
+        >
+          <input
+            nz-input
+            formControlName="bairro"
+            placeholder="Ex. Nome do Bairro"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Cidade -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Cidade</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de Cidade é obrigatório"
+        >
+          <input
+            nz-input
+            formControlName="cidade"
+            placeholder="Ex. Nome da Cidade"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Estado -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Estado</nz-form-label>
+        <nz-form-control
+          [nzSpan]="24"
+          nzErrorTip="Campo de Estado é obrigatório"
+        >
+          <input
+            nz-input
+            formControlName="estado"
+            placeholder="Ex. Nome do Estado"
+            required
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <button nz-button nzType="primary" [disabled]="!usuarioForm.valid">
+      Atualizar
+    </button>
+    <button nz-button nzType="default" routerLink="../../">Cancelar</button>
+  </form>
+</div>
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cargo } from 'src/app/model/Cargo';
 import { EnderecoResposta } from 'src/app/model/EnderecoResposta';
 import { Perfil } from 'src/app/model/Perfil';
@@ -11,18 +11,20 @@ import { MensagensService } from 'src/app/services/mensagens.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { TipoContratoService } from 'src/app/services/tipo-contrato.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuariochangeService } from 'src/app/services/usuariochange.service';
 
 @Component({
-  selector: 'app-funcionario-create',
-  templateUrl: './funcionario-create.component.html',
-  styleUrls: ['./funcionario-create.component.css'],
+  selector: 'app-funcionario-update',
+  templateUrl: './funcionario-update.component.html',
+  styleUrls: ['./funcionario-update.component.css'],
 })
-export class FuncionarioCreateComponent implements OnInit {
+export class FuncionarioUpdateComponent implements OnInit {
   usuarioForm!: FormGroup;
   perfis: Perfil[] = [];
   cargos: Cargo[] = [];
   tiposContrato: TipoContrato[] = [];
   hide: boolean = true;
+  id!: number;
 
   constructor(
     private readonly mensagensService: MensagensService,
@@ -31,24 +33,59 @@ export class FuncionarioCreateComponent implements OnInit {
     private readonly tipoContrato: TipoContratoService,
     private readonly enderecoService: EnderecoService,
     private readonly usuarioService: UsuarioService,
+    private readonly userChangeService: UsuariochangeService,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.iniciarForm();
+  }
 
   ngOnInit(): void {
-    this.iniciarForm();
+    this.id = this.route.snapshot.params['id'];
+    this.loadUsuario();
     this.carregarTipoContrato();
     this.carregarPerfis();
     this.carregarCargos();
   }
 
-  create(): void {
-    this.usuarioService.create(this.usuarioForm.value).subscribe({
-      next: (resposta) => {
-        this.mensagensService.sucesso(
-          'Usuário cadastrado com sucesso'
-        );
+  loadUsuario(): void {
+    this.usuarioService.findByUsuarioPorId(this.id).subscribe({
+      next: (usuario) => {
+        console.log(' aquiUsuario:', usuario);
+        this.usuarioForm.patchValue({
+          email: usuario.email,
+          senha: '',
+          confirmarSenha: '',
+          perfil: usuario.perfis[0]?.id,
+          ativo: usuario.ativo,
+          nome: usuario.pessoa.nome,
+          cargo: usuario.funcionario.cargo.id,
+          tipoContrato: usuario.funcionario.tipoContrato.id,
+          cpf: usuario.pessoa.cpf,
+          telefone: usuario.pessoa.telefone,
+          dataNascimento: usuario.pessoa.dataNascimento,
+          numero: usuario.pessoa.endereco.numero,
+          rua: usuario.pessoa.endereco.rua,
+          bairro: usuario.pessoa.endereco.bairro,
+          cidade: usuario.pessoa.endereco.cidade,
+          cep: usuario.pessoa.endereco.cep,
+          estado: usuario.pessoa.endereco.estado,
+        });
+      },
+      error: (ex) => {
+        this.mensagensService.erro(ex.error.message);
+      },
+    });
+  }
+
+  update(): void {
+    this.usuarioForm.value.id = this.id;
+    this.usuarioService.update(this.usuarioForm.value).subscribe({
+      next: () => {
+        this.mensagensService.sucesso('Usuário atualizada com sucesso.');
         this.router.navigate(['funcionarios']);
+        this.userChangeService.notifyUserChanged();
       },
       error: (ex) => {
         if (ex.error.errors) {
