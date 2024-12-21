@@ -27,10 +27,10 @@ export class PerfilUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.initForm();
-    this.loadCategoria();
+    this.loadPerfil();
   }
 
-  loadCategoria(): void {
+  loadPerfil(): void {
     this.perfilService.findById(this.id).subscribe({
       next: (perfil) => {
         this.perfilForm.patchValue(perfil);

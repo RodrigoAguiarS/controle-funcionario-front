@@ -22,6 +22,11 @@ import { TipoContratoListComponent } from './components/tipo-contrato/tipo-contr
 import { TipoContratoUpdateComponent } from './components/tipo-contrato/tipo-contrato-update/tipo-contrato-update.component';
 import { TipoContratoDeleteComponent } from './components/tipo-contrato/tipo-contrato-delete/tipo-contrato-delete.component';
 
+import { PontoCreateComponent } from './components/ponto/ponto-create/ponto-create.component';
+import { PontoUpdateComponent } from './components/ponto/ponto-update/ponto-update.component';
+import { PontoDeleteComponent } from './components/ponto/ponto-delete/ponto-delete.component';
+import { PontoInsertComponent } from './components/ponto/ponto-insert/ponto-insert.component';
+
 
 import { NoAuthGuard } from './auth/noauth.guard';
 import { RoleGuard } from './auth/role.guard';
@@ -63,6 +68,17 @@ const routes: Routes = [
           { path: 'create', component: PerfilCreateComponent },
           { path: 'update/:id', component: PerfilUpdateComponent },
           { path: 'delete/:id', component: PerfilDeleteComponent },
+        ],
+      },
+      {
+        path: 'pontos',
+        canActivate: [RoleGuard],
+        data: { roles: [ACESSO.ADMINISTRADOR, ACESSO.USUARIO] },
+        children: [
+          { path: 'create', component: PontoCreateComponent },
+          { path: 'update/:id', component: PontoUpdateComponent },
+          { path: 'insert', component: PontoInsertComponent },
+          { path: 'delete/:id', component: PontoDeleteComponent },
         ],
       },
       {

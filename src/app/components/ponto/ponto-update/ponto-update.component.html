@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Editar Ponto</h2>
+  <form nz-form [formGroup]="pontoForm" (ngSubmit)="update()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="tipo">Tipo</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select formControlName="tipo" id="tipo">
+          <nz-option nzValue="ENTRADA" nzLabel="Entrada"></nz-option>
+          <nz-option nzValue="SAIDA" nzLabel="Saída"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="novaDataHora">Data e Hora</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input formControlName="novaDataHora" id="novaDataHora" type="datetime-local" />
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button nzType="primary" [disabled]="!pontoForm.valid">Salvar</button>
+  </form>
+</div>

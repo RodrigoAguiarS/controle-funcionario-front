@@ -1,1 +1,46 @@
-<p>home works!</p>
+<div class="dashboard">
+  <div class="cards-container">
+    <nz-card nzTitle="Resumo da Jornada" class="card card-resumo">
+      <p>Status: {{ resumo.jornadaCompleta ? 'Completa' : 'Incompleta' }}</p>
+    </nz-card>
+    <nz-card nzTitle="Previsão para Completar Jornada" class="card card-previsao">
+      <p>{{ resumo.horasRestantes | duration }}</p>
+    </nz-card>
+    <nz-card nzTitle="Horas Excedidas" class="card card-excedidas">
+      <p>{{ resumo.horasExtras | duration }}</p>
+    </nz-card>
+  </div>
+  <div class="list-container">
+    <nz-card nzTitle="Pontos Registrados" class="card">
+      <button nz-button nzType="primary" nzShape="circle" nzSize="large" [routerLink]="['/pontos/insert']" class="add-ponto-icon">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+      </button>
+      <nz-list nzBordered>
+        <nz-list-empty *ngIf="resumo.pontos.length === 0">
+          <nz-empty nzNotFoundContent="Não há pontos registrados para hoje."></nz-empty>
+        </nz-list-empty>
+        <nz-list-item *ngFor="let ponto of resumo.pontos" [ngClass]="{'entrada': ponto.tipo === 'ENTRADA', 'saida': ponto.tipo === 'SAIDA'}">
+          <nz-list-item-meta>
+            <nz-list-item-meta-title>
+              <div class="ponto-info">
+                <i nz-icon [nzType]="ponto.tipo === 'ENTRADA' ? 'check' : 'logout'" class="ponto-icon"></i>
+                {{ ponto.tipo | titlecase }}
+              </div>
+              <div class="actions">
+                <button nz-button nzType="link" [routerLink]="['/pontos/update', ponto.id]">
+                  <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </button>
+                <button nz-button nzType="link" [routerLink]="['/pontos/delete', ponto.id]">
+                  <i nz-icon nzType="delete" nzTheme="outline"></i>
+                </button>
+              </div>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-description>
+              {{ ponto.dataHora | dateTimeFormat }}
+            </nz-list-item-meta-description>
+          </nz-list-item-meta>
+        </nz-list-item>
+      </nz-list>
+    </nz-card>
+  </div>
+</div>

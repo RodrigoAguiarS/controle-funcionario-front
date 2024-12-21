@@ -8,7 +8,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 import { CurrencyMaskModule } from "ng2-currency-mask";
-import { CepPipe, CnpjPipe, CPFPipe, TelefonePipe, } from '../pipe';
+import { CepPipe, CnpjPipe, CPFPipe, TelefonePipe, DurationPipe, DateTimeFormatPipe } from '../pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
@@ -66,6 +67,10 @@ import { TipoContratoUpdateComponent } from './components/tipo-contrato/tipo-con
 import { TipoContratoDeleteComponent } from './components/tipo-contrato/tipo-contrato-delete/tipo-contrato-delete.component';
 import { FuncionarioUpdateComponent } from './components/funcionario/funcionario-update/funcionario-update.component';
 import { FuncionarioDeleteComponent } from './components/funcionario/funcionario-delete/funcionario-delete.component';
+import { PontoCreateComponent } from './components/ponto/ponto-create/ponto-create.component';
+import { PontoUpdateComponent } from './components/ponto/ponto-update/ponto-update.component';
+import { PontoDeleteComponent } from './components/ponto/ponto-delete/ponto-delete.component';
+import { PontoInsertComponent } from './components/ponto/ponto-insert/ponto-insert.component';
 
 
 registerLocaleData(pt);
@@ -76,6 +81,8 @@ registerLocaleData(pt);
     CPFPipe,
     CepPipe,
     CnpjPipe,
+    DateTimeFormatPipe,
+    DurationPipe,
     AppComponent,
     LoginComponent,
     HomeComponent,
@@ -97,6 +104,10 @@ registerLocaleData(pt);
     TipoContratoDeleteComponent,
     FuncionarioUpdateComponent,
     FuncionarioDeleteComponent,
+    PontoCreateComponent,
+    PontoUpdateComponent,
+    PontoDeleteComponent,
+    PontoInsertComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,6 +118,7 @@ registerLocaleData(pt);
     NzButtonModule,
     NzSwitchModule,
     NzImageModule,
+    NzEmptyModule,
     NzSpinModule,
     NzStatisticModule,
     NzCollapseModule,

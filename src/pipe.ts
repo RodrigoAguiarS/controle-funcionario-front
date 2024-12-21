@@ -46,6 +46,37 @@ export class TelefonePipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'duration',
+})
+export class DurationPipe implements PipeTransform {
+  transform(value: string): string {
+    const duration = value.match(/PT(\d+H)?(\d+M)?/);
+    if (!duration) {
+      return '0h 0m';
+    }
+    const hours = duration[1] ? duration[1].replace('H', '') : '0';
+    const minutes = duration[2] ? duration[2].replace('M', '') : '0';
+    return `${hours}h ${minutes}m`;
+  }
+}
+
+@Pipe({
+  name: 'dateTimeFormat'
+})
+export class DateTimeFormatPipe implements PipeTransform {
+
+  transform(value: string): string {
+    const date = new Date(value);
+    const dia = String(date.getDate()).padStart(2, '0');
+    const mes = String(date.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+    const ano = date.getFullYear();
+    const horas = String(date.getHours()).padStart(2, '0');
+    const minutos = String(date.getMinutes()).padStart(2, '0');
+    return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+  }
+}
+
+@Pipe({
   name: 'cnpj',
 })
 export class CnpjPipe implements PipeTransform {

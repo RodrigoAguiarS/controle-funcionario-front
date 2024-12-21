@@ -10,18 +10,17 @@
       nzCollapsible
     >
       <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-menu-item routerLink="/home">
-          <i nz-icon nzType="home"></i>
-          <span>Home</span>
-        </li>
-
         <li
           *ngIf="roles.includes('USUARIO') || roles.includes('ADMINISTRADOR')"
           nz-menu-item
-          routerLink="/clientes/home"
+          routerLink="/home"
         >
           <i nz-icon nzType="team"></i>
           <span>Meus Dados</span>
+        </li>
+        <li nz-menu-item routerLink="/pontos/create">
+          <i nz-icon nzType="clock-circle"></i>
+          <span>Registrar Ponto</span>
         </li>
         <li
           *ngIf="roles.includes('ADMINISTRADOR')"
@@ -48,13 +47,13 @@
           <span>Cargo</span>
         </li>
         <li
-        *ngIf="roles.includes('ADMINISTRADOR')"
-        nz-menu-item
-        routerLink="/tipo-contratos"
-      >
-        <i nz-icon nzType="tool"></i>
-        <span>Tipo Contrato</span>
-      </li>
+          *ngIf="roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/tipo-contratos"
+        >
+          <i nz-icon nzType="tool"></i>
+          <span>Tipo Contrato</span>
+        </li>
         <li nz-menu-item (click)="logout()" (keydown)="onKeyDown($event)">
           <i nz-icon nzType="logout"></i>
           <span>Sair</span>
