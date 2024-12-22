@@ -1,69 +1,138 @@
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f4f6f8;
 }
 
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.card {
+.dashboard-header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dashboard-header p {
+  color: #666;
+}
+
+.dashboard-summary {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
   flex: 1;
-  min-width: 300px;
-  color: white; /* Cor do texto para garantir legibilidade */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.card-resumo {
-  background-color: #4caf50; /* Verde */
+.summary-jornada {
+  background-color: #e0f7fa;
 }
 
-.card-previsao {
-  background-color: #ff9800; /* Laranja */
+.summary-previsao {
+  background-color: #fff3e0;
 }
 
-.card-excedidas {
-  background-color: #f44336; /* Vermelho */
+.summary-excedidas {
+  background-color: #ffebee;
 }
 
-.list-container {
-  margin-top: 20px;
+.summary-card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.nz-list-item-meta-title {
+.summary-card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.dashboard-user-info {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-user-info h2 {
+  margin-bottom: 15px;
+}
+
+.user-info p {
+  margin: 5px 0;
+}
+
+.dashboard-pontos {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-ponto-btn {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pontos-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pontos-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.pontos-list li.entrada {
+  background-color: #e8f5e9;
+}
+
+.pontos-list li.saida {
+  background-color: #ffebee;
+}
+
+.ponto-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
 
 .ponto-icon {
   font-size: 20px;
-  color: #1890ff; /* Azul padrão do NG-ZORRO */
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-left: auto; /* Alinha as ações à direita */
-}
-
-.actions button {
-  padding: 0;
+.ponto-actions button {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
-.nz-list-item-meta-description {
-  color: #666; /* Cor do texto da descrição */
-  flex: 1; /* Faz com que a descrição ocupe o espaço disponível */
-}
-
-.entrada .ponto-icon {
-  color: #4caf50; /* Verde para entrada */
-}
-
-.saida .ponto-icon {
-  color: #f44336; /* Vermelho para saída */
+.empty-list {
+  text-align: center;
+  color: #999;
 }

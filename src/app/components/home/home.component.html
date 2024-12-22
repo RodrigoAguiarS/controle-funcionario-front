@@ -1,46 +1,65 @@
 <div class="dashboard">
-  <div class="cards-container">
-    <nz-card nzTitle="Resumo da Jornada" class="card card-resumo">
-      <p>Status: {{ resumo.jornadaCompleta ? 'Completa' : 'Incompleta' }}</p>
-    </nz-card>
-    <nz-card nzTitle="Previsão para Completar Jornada" class="card card-previsao">
+  <!-- Cabeçalho do Dashboard -->
+  <header class="dashboard-header">
+    <h1>Dashboard de Pontos</h1>
+    <p>Visualize suas informações e controle sua jornada de trabalho.</p>
+  </header>
+
+  <!-- Seção de Resumo -->
+  <section class="dashboard-summary">
+    <article class="summary-card summary-jornada">
+      <h2>Status da Jornada</h2>
+      <p class="status">{{ resumo.jornadaCompleta ? 'Completa' : 'Incompleta' }}</p>
+    </article>
+    <article class="summary-card summary-previsao">
+      <h2>Previsão para Completar</h2>
       <p>{{ resumo.horasRestantes | duration }}</p>
-    </nz-card>
-    <nz-card nzTitle="Horas Excedidas" class="card card-excedidas">
+    </article>
+    <article class="summary-card summary-excedidas">
+      <h2>Horas Excedidas</h2>
       <p>{{ resumo.horasExtras | duration }}</p>
-    </nz-card>
-  </div>
-  <div class="list-container">
-    <nz-card nzTitle="Pontos Registrados" class="card">
-      <button nz-button nzType="primary" nzShape="circle" nzSize="large" [routerLink]="['/pontos/insert']" class="add-ponto-icon">
-        <i nz-icon nzType="plus" nzTheme="outline"></i>
+    </article>
+  </section>
+
+  <!-- Seção de Dados do Usuário -->
+  <section class="dashboard-user-info">
+    <h2>Dados do Usuário</h2>
+    <div class="user-info">
+      <p><strong>Nome:</strong> {{ usuario.pessoa.nome }}</p>
+      <p><strong>CPF:</strong> {{ usuario.pessoa.cpf | CPF }}</p>
+      <p><strong>Cargo:</strong> {{ usuario.funcionario.cargo.nome }}</p>
+      <p><strong>Tipo de Contrato:</strong> {{ usuario.funcionario.tipoContrato.nome }}</p>
+      <p><strong>Horas por Dia:</strong> {{ usuario.funcionario.tipoContrato.horasDia }}</p>
+    </div>
+  </section>
+
+  <!-- Seção de Pontos Registrados -->
+  <section class="dashboard-pontos">
+    <header class="section-header">
+      <h2>Pontos Registrados</h2>
+      <button class="add-ponto-btn" [routerLink]="['/pontos/insert']">
+        Adicionar Ponto <i nz-icon nzType="plus" nzTheme="outline"></i>
       </button>
-      <nz-list nzBordered>
-        <nz-list-empty *ngIf="resumo.pontos.length === 0">
-          <nz-empty nzNotFoundContent="Não há pontos registrados para hoje."></nz-empty>
-        </nz-list-empty>
-        <nz-list-item *ngFor="let ponto of resumo.pontos" [ngClass]="{'entrada': ponto.tipo === 'ENTRADA', 'saida': ponto.tipo === 'SAIDA'}">
-          <nz-list-item-meta>
-            <nz-list-item-meta-title>
-              <div class="ponto-info">
-                <i nz-icon [nzType]="ponto.tipo === 'ENTRADA' ? 'check' : 'logout'" class="ponto-icon"></i>
-                {{ ponto.tipo | titlecase }}
-              </div>
-              <div class="actions">
-                <button nz-button nzType="link" [routerLink]="['/pontos/update', ponto.id]">
-                  <i nz-icon nzType="edit" nzTheme="outline"></i>
-                </button>
-                <button nz-button nzType="link" [routerLink]="['/pontos/delete', ponto.id]">
-                  <i nz-icon nzType="delete" nzTheme="outline"></i>
-                </button>
-              </div>
-            </nz-list-item-meta-title>
-            <nz-list-item-meta-description>
-              {{ ponto.dataHora | dateTimeFormat }}
-            </nz-list-item-meta-description>
-          </nz-list-item-meta>
-        </nz-list-item>
-      </nz-list>
-    </nz-card>
-  </div>
+    </header>
+    <ul class="pontos-list">
+      <li *ngIf="resumo.pontos.length === 0" class="empty-list">
+        Não há pontos registrados para hoje.
+      </li>
+      <li *ngFor="let ponto of resumo.pontos" [ngClass]="ponto.tipo.toLowerCase()">
+        <div class="ponto-info">
+          <i nz-icon [nzType]="ponto.tipo === 'ENTRADA' ? 'check-circle' : 'logout'" class="ponto-icon"></i>
+          <span>{{ ponto.tipo | titlecase }}</span>
+          <time>{{ ponto.dataHora | dateTimeFormat }}</time>
+        </div>
+        <div class="ponto-actions">
+          <button [routerLink]="['/pontos/update', ponto.id]">
+            <i nz-icon nzType="edit" nzTheme="outline"></i>
+          </button>
+          <button [routerLink]="['/pontos/delete', ponto.id]">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
 </div>

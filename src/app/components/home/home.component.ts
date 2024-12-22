@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     horasExtras: 'PT0H0M',
   };
   dataAtual: string = '';
+  loading = false;
 
   constructor(
     private readonly jornadaService: JornadaService,
