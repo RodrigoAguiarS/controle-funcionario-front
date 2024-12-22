@@ -6,6 +6,7 @@ import { MensagensService } from 'src/app/services/mensagens.service';
 import { PontoService } from 'src/app/services/ponto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { TipoEntrada } from 'src/app/model/TipoEntrada';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ponto-create',
@@ -14,20 +15,22 @@ import { TipoEntrada } from 'src/app/model/TipoEntrada';
 })
 export class PontoCreateComponent implements OnInit {
   dataAtual: Date = new Date();
-  usuario: Usuario = new Usuario();
   private subscription!: Subscription;
   pontoRegistrado: boolean = false;
   tipoPonto: string = '';
   carregandoTipoPonto: boolean = true;
+  pontoForm!: FormGroup;
 
   constructor(
     private readonly pontoService: PontoService,
     private readonly usuarioService: UsuarioService,
     private readonly mensagensService: MensagensService,
+    private readonly formBuilder: FormBuilder,
     private readonly router: Router
   ) {}
 
   ngOnInit(): void {
+    this.iniciarForm();
     this.carregarUsuario();
     this.subscription = interval(1000).subscribe(() => {
       this.dataAtual = new Date();
@@ -43,7 +46,7 @@ export class PontoCreateComponent implements OnInit {
   private carregarUsuario(): void {
     this.usuarioService.obterDadosUsuario().subscribe({
       next: (usuario: Usuario) => {
-        this.usuario = usuario;
+        this.pontoForm.get('funcionario')?.setValue(usuario.funcionario.id);
         this.verificarUltimoPonto();
       },
       error: (error) => {
@@ -53,21 +56,22 @@ export class PontoCreateComponent implements OnInit {
   }
 
   registrarPonto(): void {
-    this.pontoService.registrarPonto(this.usuario.funcionario.id).subscribe({
+    this.pontoForm.get('tipo')?.setValue(this.tipoPonto);
+    this.pontoForm.get('dataHora')?.setValue(this.dataAtual);
+    this.pontoService.registrarPonto(this.pontoForm.value).subscribe({
       next: () => {
         this.pontoRegistrado = true;
         this.mensagensService.sucesso('Ponto registrado com sucesso');
       },
       error: (ex) => {
-        this.mensagensService.erro(
-          'Erro ao registrar ponto: ' + ex.error.message
-        );
+        this.mensagensService.erro('Erro ao registrar ponto: ' + ex.error.message);
       },
     });
   }
 
   private verificarUltimoPonto(): void {
-    this.pontoService.obterUltimoPonto(this.usuario.funcionario.id).subscribe({
+    const funcionarioId = this.pontoForm.get('funcionario')?.value;
+    this.pontoService.obterUltimoPonto(funcionarioId).subscribe({
       next: (ultimoPonto) => {
         if (ultimoPonto === TipoEntrada.ENTRADA) {
           this.tipoPonto = TipoEntrada.SAIDA;
@@ -80,6 +84,15 @@ export class PontoCreateComponent implements OnInit {
         this.carregandoTipoPonto = false;
         this.tipoPonto = TipoEntrada.ENTRADA;
       },
+    });
+  }
+
+  iniciarForm(): void {
+    this.pontoForm = this.formBuilder.group({
+      tipo: [null, [Validators.required]],
+      dataHora: [null, [Validators.required]],
+      observacao: ['', Validators.required],
+      funcionario: [null, Validators.required],
     });
   }
 

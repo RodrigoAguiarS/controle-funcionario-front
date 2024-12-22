@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
-import { Usuario } from '../model/Usuario';
 import { Ponto } from '../model/Ponto';
 
 @Injectable({
@@ -11,11 +10,8 @@ import { Ponto } from '../model/Ponto';
 export class PontoService {
   constructor(private readonly http: HttpClient) {}
 
-  registrarPonto(funcionarioId: number): Observable<void> {
-    return this.http.post<void>(
-      `${API_CONFIG.baseUrl}/pontos?funcionarioId=${funcionarioId}`,
-      {}
-    );
+  registrarPonto(ponto: Ponto): Observable<Ponto> {
+    return this.http.post<Ponto>(`${API_CONFIG.baseUrl}/pontos`, ponto);
   }
 
   obterUltimoPonto(funcionarioId: number): Observable<any> {

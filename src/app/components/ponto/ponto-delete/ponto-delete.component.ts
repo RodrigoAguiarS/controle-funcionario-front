@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TipoEntrada } from 'src/app/model/TipoEntrada';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { PontoService } from 'src/app/services/ponto.service';
 
@@ -13,6 +14,7 @@ export class PontoDeleteComponent implements OnInit {
 
   pontoForm: FormGroup;
     id!: number;
+    tiposEntrada: { label: string; value: string }[] = [];
 
     constructor(
       private readonly fb: FormBuilder,
@@ -23,13 +25,15 @@ export class PontoDeleteComponent implements OnInit {
     ) {
       this.pontoForm = this.fb.group({
         tipo: [null, [Validators.required]],
-        novaDataHora: [null, [Validators.required]],
+        dataHora: [null, [Validators.required]],
+        observacao: [null],
       });
     }
 
     ngOnInit(): void {
       this.id = this.route.snapshot.params['id'];
       this.carregarPonto();
+      this.carregarTiposPonto();
     }
 
     carregarPonto(): void {
@@ -37,14 +41,23 @@ export class PontoDeleteComponent implements OnInit {
         next: (ponto) => {
           this.pontoForm.patchValue({
             tipo: ponto.tipo,
-            novaDataHora: this.formatarDataHoraParaInput(ponto.dataHora),
+            dataHora: this.formatarDataHoraParaInput(ponto.dataHora),
+            observacao: ponto.observacao,
           });
-          this.pontoForm.disable();
         },
         error: (error) => {
-          this.mensagensService.erro('Erro ao carregar ponto: ' + error.error.message);
+          this.mensagensService.erro(
+            'Erro ao carregar ponto: ' + error.error.message
+          );
         },
       });
+    }
+
+    private carregarTiposPonto(): void {
+      this.tiposEntrada = Object.keys(TipoEntrada).map((key) => ({
+        label: key.charAt(0) + key.slice(1).toLowerCase(),
+        value: key,
+      }));
     }
 
     delete(): void {
@@ -64,6 +77,10 @@ export class PontoDeleteComponent implements OnInit {
           }
         },
       });
+    }
+
+    voltar(): void {
+      this.router.navigate(['/home']);
     }
 
     private formatarDataHoraParaInput(dataHora: string): string {

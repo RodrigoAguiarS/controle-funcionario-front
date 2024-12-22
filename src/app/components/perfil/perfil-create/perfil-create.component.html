@@ -10,7 +10,9 @@
     <div fxLayout="column" fxLayoutGap="16px">
       <!-- Nome -->
       <nz-form-item fxFlex>
-        <nz-form-label [nzSpan]="24" nzFor="nome">Nome</nz-form-label>
+        <nz-form-label [nzRequired]="true" [nzSpan]="24" nzFor="nome"
+          >Nome</nz-form-label
+        >
         <nz-form-control nzRequired [nzSpan]="24" nzRequired nzErrorTip>
           <input
             nz-input
@@ -24,7 +26,9 @@
 
       <!-- Descrição -->
       <nz-form-item fxFlex>
-        <nz-form-label [nzSpan]="24" nzFor="descricao">Descrição</nz-form-label>
+        <nz-form-label [nzRequired]="true" [nzSpan]="24" nzFor="descricao"
+          >Descrição</nz-form-label
+        >
         <nz-form-control [nzSpan]="24" nzErrorTip>
           <div style="position: relative">
             <textarea

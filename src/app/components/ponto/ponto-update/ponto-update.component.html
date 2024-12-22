@@ -2,20 +2,43 @@
   <h2>Editar Ponto</h2>
   <form nz-form [formGroup]="pontoForm" (ngSubmit)="update()">
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="tipo">Tipo</nz-form-label>
-      <nz-form-control [nzSpan]="14">
-        <nz-select formControlName="tipo" id="tipo">
-          <nz-option nzValue="ENTRADA" nzLabel="Entrada"></nz-option>
-          <nz-option nzValue="SAIDA" nzLabel="Saída"></nz-option>
+      <nz-form-label nzFor="tipo" [nzRequired]="true">Tipo</nz-form-label>
+      <nz-form-control>
+        <nz-select formControlName="tipo" id="tipo" placeholder="Selecione o tipo">
+          <nz-option *ngFor="let tipo of tiposEntrada" [nzValue]="tipo.value" [nzLabel]="tipo.label"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="novaDataHora">Data e Hora</nz-form-label>
-      <nz-form-control [nzSpan]="14">
-        <input nz-input formControlName="novaDataHora" id="novaDataHora" type="datetime-local" />
+      <nz-form-label nzFor="dataHora" [nzRequired]="true">Data e Hora</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="dataHora"
+          id="dataHora"
+          type="datetime-local"
+          placeholder="Selecione a data e hora"
+        />
       </nz-form-control>
     </nz-form-item>
-    <button nz-button nzType="primary" [disabled]="!pontoForm.valid">Salvar</button>
+
+    <nz-form-item>
+      <nz-form-label nzFor="observacao">Observação</nz-form-label>
+      <nz-form-control>
+        <textarea
+          nz-input
+          formControlName="observacao"
+          id="observacao"
+          placeholder="Digite uma observação (opcional)"
+          rows="3"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="form-buttons">
+      <button nz-button type="button" nzType="default" (click)="voltar()">Voltar</button>
+      <button nz-button nzType="primary" [disabled]="!pontoForm.valid">Editar</button>
+    </div>
   </form>
 </div>

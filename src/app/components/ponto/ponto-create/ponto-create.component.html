@@ -1,17 +1,41 @@
-<div class="container">
+<div class="rel-ponto-container">
   <nz-spin [nzSpinning]="carregandoTipoPonto">
-    <div *ngIf="!pontoRegistrado">
-      <div class="relogio">
-        <h2>{{ dataAtual | date: 'fullDate' }}</h2>
-        <h1>{{ dataAtual | date: 'HH:mm:ss' }}</h1>
-      </div>
-      <div class="botoes">
-        <button nz-button nzType="primary" (click)="registrarPonto()">Registrar Ponto de {{ tipoPonto }}</button>
-        <button nz-button nzType="default" (click)="cancelar()">Cancelar</button>
-      </div>
-    </div>
+    <section *ngIf="!pontoRegistrado" class="relogio-ponto">
+      <header class="relogio-header">
+        <h2>{{ dataAtual | date : "fullDate" }}</h2>
+        <h1>{{ dataAtual | date : "HH:mm:ss" }}</h1>
+      </header>
+      <form [formGroup]="pontoForm" class="relogio-form">
+        <!-- observacao -->
+        <nz-form-item>
+          <nz-form-control [nzSpan]="30">
+            <textarea
+              nz-input
+              formControlName="observacao"
+              name="observacao"
+              rows="3"
+              placeholder="Digite uma observação..."
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
 
-    <nz-result *ngIf="pontoRegistrado" nzStatus="success" nzTitle="Ponto Registrado com Sucesso" nzSubTitle="Seu ponto foi registrado com sucesso.">
+        <!-- tipo -->
+        <div class="relogio-botoes">
+          <button nz-button nzType="primary" (click)="registrarPonto()">
+            Registrar Ponto de {{ tipoPonto }}
+          </button>
+          <button nz-button nzType="default" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </section>
+    <nz-result
+      *ngIf="pontoRegistrado"
+      nzStatus="success"
+      nzTitle="Ponto Registrado com Sucesso"
+      nzSubTitle="Seu ponto foi registrado com sucesso."
+    >
       <div nz-result-extra>
         <button nz-button nzType="primary" (click)="cancelar()">Voltar</button>
       </div>

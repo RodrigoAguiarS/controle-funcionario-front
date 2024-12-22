@@ -1,65 +1,60 @@
+.rel-ponto-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
 
-
-/* Container principal */
-.container {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  width: 400px;
-  text-align: center;
+.relogio-ponto {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* Relógio */
-.relogio h2 {
-  font-size: 1.5rem;
-  color: #666;
-  margin: 0 0 10px;
 }
 
-.relogio h1 {
-  font-size: 3rem;
-  color: #333;
-  margin: 0;
+.relogio-header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Botões */
-.botoes {
-  margin-top: 20px;
+.relogio-header h2 {
+  font-size: 18px;
+  color: #595959;
+  margin-bottom: 5px;
+}
+
+.relogio-header h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #262626;
+}
+
+.relogio-form {
+  width: 100%;
+}
+
+.relogio-botoes {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  margin-top: 20px;
 }
 
-.botoes button {
+.relogio-botoes button {
   flex: 1;
-  font-size: 1rem;
-  border-radius: 8px;
+  margin: 0 5px;
 }
 
-.botoes button[nzType="primary"] {
-  background-color: #1890ff;
-  border: none;
-  color: white;
-}
-
-.botoes button[nzType="primary"]:hover {
-  background-color: #40a9ff;
-}
-
-.botoes button[nzType="default"] {
-  background-color: #f5f5f5;
+textarea[nz-input] {
+  width: 100%;
+  resize: none;
+  border-radius: 4px;
   border: 1px solid #d9d9d9;
-  color: #333;
-}
-
-.botoes button[nzType="default"]:hover {
-  background-color: #e6e6e6;
+  padding: 8px;
 }

@@ -4,5 +4,6 @@ export class Ponto {
   id!: number;
   tipo: TipoEntrada = TipoEntrada.ENTRADA;
   dataHora!: string ;
-  funcionarioId!: number;
+  observacao!: string ;
+  funcionario!: number;
 }

@@ -46,7 +46,7 @@ export class TipoContratoDeleteComponent implements OnInit {
     this.tipoContratoService.delete(this.tipoContratoForm.value.id).subscribe({
       next: () => {
         this.mensagensService.sucesso('TipoContrato apagado com sucesso.');
-        this.router.navigate(['tipoContratos']);
+        this.router.navigate(['tipo-contratos']);
       },
       error: (ex) => {
         if (ex.error.errors) {

@@ -45,7 +45,7 @@ export class TipoContratoUpdateComponent implements OnInit {
     this.tipoContratoService.update(this.tipoContratoForm.value).subscribe({
       next: () => {
         this.mensagemService.sucesso('TipoContrato atualizada com sucesso.');
-        this.router.navigate(['tipoContratos']);
+        this.router.navigate(['tipo-contratos']);
       },
       error: (ex) => {
         if (ex.error.errors) {

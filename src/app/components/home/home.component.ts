@@ -49,10 +49,6 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: (resumo) => {
           this.resumo = resumo;
-          console.log('Resumo da jornada:', this.resumo);
-          if (this.resumo.pontos.length === 0) {
-            this.mensagensService.erro('Não há pontos registrados para hoje.');
-          }
         },
         error: (error) => {
           this.mensagensService.erro(error.error.message);

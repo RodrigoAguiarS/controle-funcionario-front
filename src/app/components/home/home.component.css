@@ -98,6 +98,22 @@
 .pontos-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+
+.empty-list {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.pontos-list .entrada .ponto-icon {
+  color: #4caf50;
+}
+
+.pontos-list .saida .ponto-icon {
+  color: #f44336;
 }
 
 .pontos-list li {
@@ -105,15 +121,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.pontos-list li.entrada {
-  background-color: #e8f5e9;
-}
-
-.pontos-list li.saida {
-  background-color: #ffebee;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .ponto-info {
@@ -123,16 +131,45 @@
 }
 
 .ponto-icon {
-  font-size: 20px;
+  font-size: 24px;
+}
+
+.ponto-tipo {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.ponto-data {
+  font-size: 14px;
+  color: #555;
+}
+
+.ponto-observacao {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.ponto-actions {
+  display: flex;
+  gap: 5px;
 }
 
 .ponto-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
   border: none;
   background: none;
   cursor: pointer;
 }
 
-.empty-list {
-  text-align: center;
-  color: #999;
+.ponto-actions button i {
+  font-size: 20px;
+  color: #1890ff;
+}
+
+.ponto-actions button i:hover {
+  color: #40a9ff;
 }

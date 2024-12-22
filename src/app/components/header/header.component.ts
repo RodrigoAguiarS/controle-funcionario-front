@@ -1,9 +1,9 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/model/Usuario';
-import { Pessoa } from 'src/app/model/Pessoa';
 import { Component, OnInit } from '@angular/core';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuariochangeService } from 'src/app/services/usuariochange.service';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +18,16 @@ export class HeaderComponent implements OnInit {
   constructor(private readonly authService: AuthService,
     private readonly mensagensService: MensagensService,
     private readonly usuarioService: UsuarioService,
+    private readonly userChangeService: UsuariochangeService
   ) { }
 
   ngOnInit(): void {
     this.carregarUsuario();
     this.carregarPapelUsuario();
+    this.userChangeService.userChanged$.subscribe(() => {
+      this.carregarUsuario();
+      this.carregarPapelUsuario();
+    });
   }
 
   private carregarPapelUsuario(): void {

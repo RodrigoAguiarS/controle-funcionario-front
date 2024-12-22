@@ -48,14 +48,17 @@
       <li *ngFor="let ponto of resumo.pontos" [ngClass]="ponto.tipo.toLowerCase()">
         <div class="ponto-info">
           <i nz-icon [nzType]="ponto.tipo === 'ENTRADA' ? 'check-circle' : 'logout'" class="ponto-icon"></i>
-          <span>{{ ponto.tipo | titlecase }}</span>
-          <time>{{ ponto.dataHora | dateTimeFormat }}</time>
+          <span class="ponto-tipo">{{ ponto.tipo | titlecase }}</span>
+          <time class="ponto-data">{{ ponto.dataHora | date: 'dd/MM/yyyy HH:mm:ss' }}</time>
+          <div *ngIf="ponto.observacao" class="ponto-observacao">
+            <strong>Observação:</strong> {{ ponto.observacao }}
+          </div>
         </div>
         <div class="ponto-actions">
-          <button [routerLink]="['/pontos/update', ponto.id]">
+          <button nz-button nzType="link" [routerLink]="['/pontos/update', ponto.id]">
             <i nz-icon nzType="edit" nzTheme="outline"></i>
           </button>
-          <button [routerLink]="['/pontos/delete', ponto.id]">
+          <button nz-button nzType="link" [routerLink]="['/pontos/delete', ponto.id]">
             <i nz-icon nzType="delete" nzTheme="outline"></i>
           </button>
         </div>
