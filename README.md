@@ -1,27 +1,47 @@
-# ControleFuncionarioFront
+# Controle de Funcionários - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+Este é o projeto frontend para o sistema de controle de funcionários. O projeto foi desenvolvido utilizando Angular e outras bibliotecas auxiliares.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Cadastro, atualização e exclusão de funcionários
+- Autenticação de usuários
+- Controle de pontos (entrada e saída)
+- Visualização de dados do usuário
+- Integração com APIs para busca de endereços por CEP
 
-## Code scaffolding
+## Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 14
+- Ng Zorro Ant Design
+- RxJS
+- ngx-mask
+- ng2-currency-mask
+- Auth0 Angular JWT
 
-## Build
+## Pré-requisitos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js (versão 14 ou superior)
+- Angular CLI (versão 14 ou superior)
 
-## Running unit tests
+## Instalação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone o repositório:
 
-## Running end-to-end tests
+   ```bash
+   git clone https://github.com/seu-usuario/controle-funcionario-front.git
+2. Navegue até o diretório do projeto:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   cd controle-funcionario-front
+   
+3. Instale as dependências:
 
-## Further help
+   ```bash
+   npm install
+   
+4. Executando o Projeto
+Para executar o projeto em modo de desenvolvimento, utilize o comando:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   npm start   
