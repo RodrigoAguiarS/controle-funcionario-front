@@ -70,7 +70,10 @@ import { FuncionarioDeleteComponent } from './components/funcionario/funcionario
 import { PontoCreateComponent } from './components/ponto/ponto-create/ponto-create.component';
 import { PontoUpdateComponent } from './components/ponto/ponto-update/ponto-update.component';
 import { PontoDeleteComponent } from './components/ponto/ponto-delete/ponto-delete.component';
-import { PontoInsertComponent } from './components/ponto/ponto-insert/ponto-insert.component';
+import { SolicitacaoPontoCreateComponent } from './components/solicitacao/solicitacao-ponto-create/solicitacao-ponto-create.component';
+import { SolicitacaoListComponent } from './components/solicitacao/solicitacao-list/solicitacao-list.component';
+import { SolicitacaoAprovarComponent } from './components/solicitacao/solicitacao-aprovar/solicitacao-aprovar.component';
+import { SolicitacaoPontoAlteracaoComponent } from './components/solicitacao/solicitacao-ponto-alteracao/solicitacao-ponto-alteracao.component';
 
 
 registerLocaleData(pt);
@@ -107,7 +110,10 @@ registerLocaleData(pt);
     PontoCreateComponent,
     PontoUpdateComponent,
     PontoDeleteComponent,
-    PontoInsertComponent,
+    SolicitacaoPontoCreateComponent,
+    SolicitacaoListComponent,
+    SolicitacaoAprovarComponent,
+    SolicitacaoPontoAlteracaoComponent,
   ],
   imports: [
     BrowserModule,

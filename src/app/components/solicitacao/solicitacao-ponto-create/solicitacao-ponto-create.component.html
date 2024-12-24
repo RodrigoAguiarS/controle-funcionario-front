@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Solicitar Correção de Ponto</h2>
+  <form nz-form [formGroup]="solicitacaoForm" (ngSubmit)="create()" class="solicitacao-form">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="dataHoraCorrigida">Data e Hora</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input
+          nz-input
+          formControlName="dataHoraCorrigida"
+          id="dataHoraCorrigida"
+          type="datetime-local"
+          class="input-field" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzFor="tipo" [nzRequired]="true">Tipo</nz-form-label>
+      <nz-form-control>
+        <nz-select formControlName="tipo" id="tipo" placeholder="Selecione o tipo">
+          <nz-option *ngFor="let tipo of tiposEntrada" [nzValue]="tipo.value" [nzLabel]="tipo.label"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="motivo">Motivo</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <textarea
+          nz-input
+          formControlName="motivo"
+          id="motivo"
+          placeholder="Digite o motivo da correção"
+          class="textarea-field"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="14" [nzOffset]="6" class="button-group">
+        <button nz-button nzType="primary" [disabled]="solicitacaoForm.invalid">Enviar Solicitação</button>
+        <button nz-button type="button" nzType="default" routerLink="/home">Cancelar</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

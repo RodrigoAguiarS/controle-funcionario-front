@@ -18,6 +18,16 @@
           <i nz-icon nzType="team"></i>
           <span>Meus Dados</span>
         </li>
+
+        <li
+          *ngIf="roles.includes('ADMINISTRADOR')"
+          nz-menu-item
+          routerLink="/solicitacoes"
+        >
+          <i nz-icon nzType="team"></i>
+          <span>Aprovar Solicitação</span>
+        </li>
+
         <li nz-menu-item routerLink="/pontos/create">
           <i nz-icon nzType="clock-circle"></i>
           <span>Registrar Ponto</span>

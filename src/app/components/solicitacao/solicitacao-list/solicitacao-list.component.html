@@ -1,0 +1,52 @@
+<div class="container">
+  <nz-table
+    #basicTable
+    [nzData]="solicitacoes"
+    [nzPageIndex]="1"
+    [nzPageSize]="10"
+    [nzLoading]="loading"
+    nzShowPagination="true"
+  >
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Data Hora Original</th>
+      <th scope="col">Data Hora Corrigida</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Motivo</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr *ngFor="let solicitacao of solicitacoes">
+        <td>{{ solicitacao.id }}</td>
+        <td>{{ solicitacao.nomeFuncionario }}</td>
+        <td>{{ solicitacao.dataHoraOriginal}}</td>
+        <td>{{ solicitacao.dataHoraCorrigida}}</td>
+        <td>{{ solicitacao.tipo}}</td>
+        <td>{{ solicitacao.motivo}}</td>
+
+        <td>
+          <a [routerLink]="['/solicitacoes/aprovar', solicitacao.id]">
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              title="Atualizar Solicitacao"
+            ></i>
+          </a>
+          <a [routerLink]="['/solicitacoes/delete', solicitacao.id]">
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              title="Deletar perfil"
+            ></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+

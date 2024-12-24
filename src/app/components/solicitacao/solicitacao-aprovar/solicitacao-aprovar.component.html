@@ -1,0 +1,83 @@
+<div class="container solicitacao-correcao-container">
+  <h2>Solicitar Correção de Ponto</h2>
+  <form
+    nz-form
+    [formGroup]="solicitacaoForm"
+    (ngSubmit)="aprovar()"
+    class="solicitacao-form"
+  >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="nomeFuncionario"
+        >Funcionário</nz-form-label
+      >
+      <nz-form-control [nzSpan]="14">
+        <input
+          readonly
+          nz-input
+          formControlName="nomeFuncionario"
+          id="nomeFuncionario"
+          readonly
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="dataHoraOriginal"
+        >Data e Hora Original</nz-form-label
+      >
+      <nz-form-control [nzSpan]="14">
+        <input
+          readonly
+          nz-input
+          formControlName="dataHoraOriginal"
+          id="dataHoraOriginal"
+          type="datetime-local"
+          class="input-field"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="dataHoraCorrigida"
+        >Data e Hora Corrigida</nz-form-label
+      >
+      <nz-form-control [nzSpan]="14">
+        <input
+          nz-input
+          readonly
+          formControlName="dataHoraCorrigida"
+          id="dataHoraCorrigida"
+          type="datetime-local"
+          class="input-field"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="tipo">Tipo</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input formControlName="tipo" id="tipo" readonly />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="motivo">Motivo</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <textarea
+          nz-input
+          readonly
+          formControlName="motivo"
+          id="motivo"
+          placeholder="Digite o motivo da correção"
+          class="textarea-field"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="14" [nzOffset]="6" class="button-group">
+        <button nz-button nzType="primary" [disabled]="solicitacaoForm.invalid">
+          Aprovar Solicitação
+        </button>
+        <button nz-button type="button" nzType="default" routerLink="/home">
+          Cancelar
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

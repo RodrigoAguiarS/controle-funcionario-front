@@ -56,8 +56,9 @@ export class PontoCreateComponent implements OnInit {
   }
 
   registrarPonto(): void {
-    this.pontoForm.get('tipo')?.setValue(this.tipoPonto);
-    this.pontoForm.get('dataHora')?.setValue(this.dataAtual);
+    const dataHoraBrasil = new Date(this.dataAtual.getTime() - (this.dataAtual.getTimezoneOffset() * 60000));
+    this.pontoForm.get('dataHora')?.setValue(dataHoraBrasil.toISOString().slice(0, 19));
+    console.log(this.pontoForm.value);
     this.pontoService.registrarPonto(this.pontoForm.value).subscribe({
       next: () => {
         this.pontoRegistrado = true;

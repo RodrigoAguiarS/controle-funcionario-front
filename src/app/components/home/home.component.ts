@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class HomeComponent implements OnInit {
   usuario: Usuario = new Usuario();
+  roles: string[] = [];
   resumo: any = {
     pontos: [],
     jornadaCompleta: false,
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
     this.usuarioService.obterDadosUsuario().subscribe({
       next: (usuario: Usuario) => {
         this.usuario = usuario;
+        this.roles = usuario.perfis.map((perfil) => perfil.nome);
         this.carregarResumoJornada();
       },
       error: (error) => {
