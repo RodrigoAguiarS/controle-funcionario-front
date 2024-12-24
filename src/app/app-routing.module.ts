@@ -25,7 +25,11 @@ import { TipoContratoDeleteComponent } from './components/tipo-contrato/tipo-con
 import { PontoCreateComponent } from './components/ponto/ponto-create/ponto-create.component';
 import { PontoUpdateComponent } from './components/ponto/ponto-update/ponto-update.component';
 import { PontoDeleteComponent } from './components/ponto/ponto-delete/ponto-delete.component';
-import { PontoInsertComponent } from './components/ponto/ponto-insert/ponto-insert.component';
+
+import { SolicitacaoPontoCreateComponent } from './components/solicitacao/solicitacao-ponto-create/solicitacao-ponto-create.component';
+import { SolicitacaoListComponent } from './components/solicitacao/solicitacao-list/solicitacao-list.component';
+import { SolicitacaoAprovarComponent } from './components/solicitacao/solicitacao-aprovar/solicitacao-aprovar.component';
+import { SolicitacaoPontoAlteracaoComponent } from './components/solicitacao/solicitacao-ponto-alteracao/solicitacao-ponto-alteracao.component';
 
 
 import { NoAuthGuard } from './auth/noauth.guard';
@@ -77,7 +81,6 @@ const routes: Routes = [
         children: [
           { path: 'create', component: PontoCreateComponent },
           { path: 'update/:id', component: PontoUpdateComponent },
-          { path: 'insert', component: PontoInsertComponent },
           { path: 'delete/:id', component: PontoDeleteComponent },
         ],
       },
@@ -101,6 +104,18 @@ const routes: Routes = [
           { path: 'create', component: TipoContratoCreateComponent },
           { path: 'update/:id', component: TipoContratoUpdateComponent },
           { path: 'delete/:id', component: TipoContratoDeleteComponent },
+        ],
+      },
+
+      {
+        path: 'solicitacoes',
+        canActivate: [RoleGuard],
+        data: { roles: [ACESSO.ADMINISTRADOR, ACESSO.USUARIO] },
+        children: [
+          { path: '', component: SolicitacaoListComponent },
+          { path: 'create', component: SolicitacaoPontoCreateComponent },
+          { path: 'aprovar/:id', component: SolicitacaoAprovarComponent },
+          { path: 'alteracao/:id', component: SolicitacaoPontoAlteracaoComponent },
         ],
       },
     ]
